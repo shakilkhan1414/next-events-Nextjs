@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Favicon from './favicon.ico';
 
 const inter = Inter({ subsets: ['latin'] })
 

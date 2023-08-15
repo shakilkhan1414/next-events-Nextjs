@@ -29,6 +29,36 @@ const DUMMY_EVENTS = [
       image: 'images/extrovert-event.png',
       isFeatured: true,
     },
+    {
+      id: 'e4',
+      title: 'Mastering Web Development',
+      description:
+        'Dive into the world of web development with this comprehensive event. From HTML and CSS basics to advanced JavaScript frameworks, you will gain the skills to create stunning websites.',
+      location: 'TechHub Avenue 8, 54321 Codeville',
+      date: '2023-03-15',
+      image: 'images/coding-event.jpg',
+      isFeatured: true,
+    },
+    {
+      id: 'e5',
+      title: 'Artificial Intelligence Unleashed',
+      description:
+        'Discover the power of AI in this event that covers machine learning, neural networks, and real-world applications. Join us to explore the fascinating field of artificial intelligence.',
+      location: 'AI Plaza 3, 67890 Techopolis',
+      date: '2023-06-20',
+      image: 'images/introvert-event.jpg',
+      isFeatured: true,
+    },
+    {
+      id: 'e6',
+      title: 'The Future of Technology Summit',
+      description:
+        'Get a glimpse of the future at this tech summit. From virtual reality to quantum computing, leading experts will share insights about the upcoming technological advancements.',
+      location: 'Innovation Hall 9, 30303 Futuria',
+      date: '2023-09-05',
+      image: 'images/extrovert-event.png',
+      isFeatured: false,
+    },
   ];
   
   export function getFeaturedEvents() {
