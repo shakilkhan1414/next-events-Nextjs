@@ -1,7 +1,12 @@
+'use client'
 import EventList from '@/components/events/EventList'
 import ResultsTitle from '@/components/events/results-title'
+import EventSearch from '@/components/events/EventSearch'
+import { useRouter } from "next/navigation"
 
 const page = async ({params}) => {
+
+  const router=useRouter()
 
   const year = params.slug[0]
   const month = params.slug[1]
@@ -13,8 +18,14 @@ const page = async ({params}) => {
 
   const date=new Date(numYear,numMonth-1)
 
+  const searchEventHandler=(month,year)=>{
+    const fullpath=`/events/${year}/${month}`
+    router.push(fullpath)
+  }
+
   if(!filteredEvents || filteredEvents.length===0){
     return <>
+      <EventSearch onSearch={searchEventHandler} />
       <ResultsTitle date={date} />
       <p className='center'>No Events Found</p>
     </>
@@ -23,6 +34,7 @@ const page = async ({params}) => {
 
   return (
     <div>
+      <EventSearch onSearch={searchEventHandler} />
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </div>
