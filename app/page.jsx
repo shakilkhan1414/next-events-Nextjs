@@ -1,13 +1,20 @@
 import EventList from "@/components/events/EventList"
-import { getFeaturedEvents } from "./dummy-data"
+import { getFeaturedEvents } from "@/helpers/api-util"
 
-export default function Home() {
+export default async function Home() {
 
-  const featuredEvents=getFeaturedEvents()
+  const events = await getEvents()
 
   return (
     <main>
-      <EventList items={featuredEvents} />
+      <EventList items={events} />
     </main>
   )
 }
+
+async function getEvents() {
+  const res = await getFeaturedEvents();
+  return res
+}
+
+export const revalidate = 10

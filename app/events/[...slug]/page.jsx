@@ -1,29 +1,15 @@
-'use client'
-import { useParams } from 'next/navigation'
-import { getFilteredEvents } from '@/app/dummy-data'
 import EventList from '@/components/events/EventList'
 import ResultsTitle from '@/components/events/results-title'
 
-const page = () => {
+const page = async ({params}) => {
 
-  const params=useParams()
-
-  const slugs=params.slug
-
-  if(!slugs){
-    return <p className='center'>Loading...</p>
-  }
-
-  const year=slugs[0]
-  const month=slugs[1]
+  const year = params.slug[0]
+  const month = params.slug[1]
 
   const numYear = +year
   const numMonth = +month
 
-  const filteredEvents=getFilteredEvents({
-    year: numYear,
-    month: numMonth
-  })
+  const filteredEvents= await getFilteredEvents(numYear,numMonth)
 
   const date=new Date(numYear,numMonth-1)
 
@@ -44,3 +30,25 @@ const page = () => {
 }
 
 export default page
+
+async function getFilteredEvents(year, month) {
+
+  const response=await fetch('https://next-events-89ffd-default-rtdb.asia-southeast1.firebasedatabase.app/events.json', { cache: 'no-store' })
+    const data=await response.json()
+
+    const events=[]
+
+    for(const key in data){
+        events.push({
+            id:key,
+            ...data[key]
+        })
+    }
+
+  let filteredEvents = events.filter((event) => {
+    const eventDate = new Date(event.date);
+    return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
+  });
+
+  return filteredEvents;
+}

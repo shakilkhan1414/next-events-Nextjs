@@ -1,13 +1,13 @@
 'use client'
-import { getAllEvents } from "../dummy-data"
+import { getAllEvents } from "@/helpers/api-util"
 import EventList from "@/components/events/EventList"
 import EventSearch from "@/components/events/EventSearch"
 import { useRouter } from "next/navigation"
 
-const page = () => {
+const page = async () => {
 
   const router=useRouter()
-  const events=getAllEvents()
+  const events= await getEvents()
 
   const searchEventHandler=(month,year)=>{
     const fullpath=`/events/${year}/${month}`
@@ -24,3 +24,9 @@ const page = () => {
 
 export default page
 
+async function getEvents() {
+  const res = await getAllEvents();
+  return res
+}
+
+export const revalidate = 10

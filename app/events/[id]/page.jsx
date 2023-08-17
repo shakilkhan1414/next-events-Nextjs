@@ -1,13 +1,11 @@
-'use client'
-import { useParams } from 'next/navigation'
 import EventSummary from "@/components/event-detail/event-summary"
 import EventLogistics from "@/components/event-detail/event-logistics"
 import EventContent from "@/components/event-detail/event-content"
-import { getEventById } from '@/app/dummy-data'
+import { getAllEvents,getEventById } from '@/helpers/api-util'
 
-const page = () => {
-  const params = useParams()
-  const event=getEventById(params.id)
+const page = async ({params}) => {
+  const {id}=params
+  const event= await getEvent(id)
 
   if(!event){
     return <p>No Event Found!</p>
@@ -23,3 +21,16 @@ const page = () => {
 }
 
 export default page
+
+export async function generateStaticParams() {
+  const events=await getAllEvents()
+  const ids=events.map(event=>({id:event.id}))
+  return ids
+}
+
+async function getEvent(id) {
+  const res = await getEventById(id)
+  return res
+}
+
+export const revalidate = 10
