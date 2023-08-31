@@ -17,7 +17,7 @@ const page = async ({params}) => {
       <EventSummary title={event.title} />
       <EventLogistics date={event.date} address={event.location} image={event.image} imageAlt={event.title} />
       <EventContent>{event.description}</EventContent>
-      <Comments evetId={event.id} />
+      <Comments eventId={event.id} />
     </>
   )
 }

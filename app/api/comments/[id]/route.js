@@ -1,31 +1,41 @@
 import { NextResponse } from "next/server"
+import { MongoClient } from "mongodb"
  
 export async function GET(request,{params}) {
-  const dummy=[
-    {
-      id: '1',
-      name: 'demo 1',
-      email: 'demo1@gmail.com',
-      text: 'new comment'
-    },
-    {
-      id: '2',
-      name: 'demo 2',
-      email: 'demo2@gmail.com',
-      text: 'new comment 2'
-    }
-  ]
 
-  return NextResponse.json({ comments: dummy }, { status: 200 })
+  const url="mongodb+srv://nextevents:6Cw5v3ICH3pA3Lw7@nextjsevents.8uj8izg.mongodb.net/?retryWrites=true&w=majority"
+  const client = new MongoClient(url);
+    
+    await client.connect();
+    const db=client.db('nextevent')
+    const comments= await db.collection('comments').find().sort({_id: -1}).toArray()
+    await client.close();
+
+  return NextResponse.json({ comments: comments }, { status: 200 })
 }
 
-export async function POST(request) {
+export async function POST(request,{params}) {
 
     const data = await request.json()
     const{name,email,text}=data
 
-    
+    const newComment={
+      name,
+      email,
+      text,
+      eventId: params.id
+    }
 
-    return NextResponse.json({ name,email,text })
+    const url="mongodb+srv://nextevents:6Cw5v3ICH3pA3Lw7@nextjsevents.8uj8izg.mongodb.net/?retryWrites=true&w=majority"
+
+    const client = new MongoClient(url);
+
+      await client.connect();
+      const db=client.db('nextevent')
+      await db.collection('comments').insertOne(newComment)
+      await client.close();
+
+    return NextResponse.json({ message: 'Comment Added!' })
 
 }
+

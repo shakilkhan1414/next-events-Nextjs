@@ -1,6 +1,5 @@
 import classes from './newsletter-registration.module.css';
 import { useRef } from 'react';
-import { MongoClient } from 'mongodb';
 
 function NewsletterRegistration() {
   const emailRef=useRef()
@@ -18,6 +17,7 @@ function NewsletterRegistration() {
     })
     .then(res=>res.json())
     .then(data=>console.log(data))
+    .catch(error=>console.log(error))
 
   }
 
