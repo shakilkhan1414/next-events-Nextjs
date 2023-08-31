@@ -3,6 +3,7 @@ import EventList from "@/components/events/EventList"
 import { getFeaturedEvents } from "@/helpers/api-util"
 import { useRouter } from "next/navigation"
 import EventSearch from "@/components/events/EventSearch"
+import NewsletterRegistration from "@/components/input/newsletter-registration"
 
 export default async function Home() {
   const router=useRouter()
@@ -15,6 +16,7 @@ export default async function Home() {
 
   return (
     <main>
+      <NewsletterRegistration />
        <EventSearch onSearch={searchEventHandler} />
       <EventList items={events} />
     </main>

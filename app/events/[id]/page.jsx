@@ -2,6 +2,7 @@ import EventSummary from "@/components/event-detail/event-summary"
 import EventLogistics from "@/components/event-detail/event-logistics"
 import EventContent from "@/components/event-detail/event-content"
 import { getAllEvents,getEventById } from '@/helpers/api-util'
+import Comments from "@/components/input/comments"
 
 const page = async ({params}) => {
   const {id}=params
@@ -16,6 +17,7 @@ const page = async ({params}) => {
       <EventSummary title={event.title} />
       <EventLogistics date={event.date} address={event.location} image={event.image} imageAlt={event.title} />
       <EventContent>{event.description}</EventContent>
+      <Comments evetId={event.id} />
     </>
   )
 }
