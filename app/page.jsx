@@ -5,10 +5,11 @@ import { useRouter } from "next/navigation"
 import EventSearch from "@/components/events/EventSearch"
 import NewsletterRegistration from "@/components/input/newsletter-registration"
 
+
 export default async function Home() {
   const router=useRouter()
   const events = await getEvents()
-
+ 
   const searchEventHandler=(month,year)=>{
     const fullpath=`/events/${year}/${month}`
     router.push(fullpath)
