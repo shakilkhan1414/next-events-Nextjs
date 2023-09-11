@@ -2,7 +2,6 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 5rem;
   width: 100%;
   box-sizing: border-box;
   background-color: #1b1b1b;
@@ -14,12 +13,18 @@
   box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
 }
 
+@media only screen and (max-width: 800px){
+  .notification {
+    padding: 10px;
+    flex-direction: column;
+  }
+}
 .notification h2 {
   margin: 0;
   font-size: 1.25rem;
   color: white;
+  font-weight: 600;
 }
-
 .pending {
   background-color: #177cbe;
 }
@@ -30,4 +35,10 @@
 
 .error {
   background-color: #e65035;
+}
+@media only screen and (max-width: 800px){
+  .notification p{
+    margin: 0;
+    text-align: center;
+  }
 }

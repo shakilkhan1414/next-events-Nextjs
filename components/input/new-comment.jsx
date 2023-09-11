@@ -28,6 +28,10 @@ function NewComment(props) {
       return;
     }
 
+    emailInputRef.current.value=''
+    nameInputRef.current.value=''
+    commentInputRef.current.value=''
+
     props.onAddComment({
       email: enteredEmail,
       name: enteredName,

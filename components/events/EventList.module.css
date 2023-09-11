@@ -1,5 +1,16 @@
-.list {
-    width: 90%;
-    max-width: 40rem;
-    margin: 5rem auto;
+  @media only screen and (min-width: 800px){
+    .list {
+      width: 90%;
+      max-width: 40rem;
+      margin: 3rem auto;
+      padding: 0;
+    }
+  }
+
+  @media only screen and (max-width: 800px){
+    .list {
+      width: 100%;
+      margin: 3rem auto;
+      padding: 0;
+    }
   }

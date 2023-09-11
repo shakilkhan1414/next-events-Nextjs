@@ -7,7 +7,11 @@
     background-color: #202020;
     box-sizing: border-box;
   }
-  
+  @media only screen and (max-width: 800px){
+    .header {
+      padding: 0.3rem 5%;
+    }
+  }
   .logo {
     font-size: 1.5rem;
     color: white;

@@ -27,6 +27,8 @@ function NewsletterRegistration() {
     })
     .then(res=>res.json())
     .then(data=>{
+      emailRef.current.value=''
+      
       notificationCtx.showNotification({
         title: 'Success!',
         message: 'Succesfully Registered for newsletter.',
@@ -46,7 +48,8 @@ function NewsletterRegistration() {
             type='email'
             placeholder='Your email'
             aria-label='Your email'
-            ref={emailRef}
+            ref={emailRef} 
+            required
           />
           <button>Register</button>
         </div>

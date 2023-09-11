@@ -1,6 +1,6 @@
 'use client'
 import EventList from '@/components/events/EventList'
-import ResultsTitle from '@/components/events/results-title'
+import ResultsTitle from '@/components/events/ResultsTitle'
 import EventSearch from '@/components/events/EventSearch'
 import { useRouter } from "next/navigation"
 
@@ -27,7 +27,7 @@ const page = async ({params}) => {
     return <>
       <EventSearch onSearch={searchEventHandler} />
       <ResultsTitle date={date} />
-      <p className='center'>No Events Found</p>
+      <p className='center'>No Events Found!</p>
     </>
     
   }

@@ -1,5 +1,5 @@
 import Button from '../ui/button';
-import classes from './results-title.module.css';
+import classes from './ResultsTitle.module.css';
 
 function ResultsTitle(props) {
   const { date } = props;
@@ -12,7 +12,7 @@ function ResultsTitle(props) {
   return (
     <section className={classes.title}>
       <h1>Events in {humanReadableDate}</h1>
-      <Button link='/events'>Show all events</Button>
+      <Button link='/events'>Show All Events</Button>
     </section>
   );
 }
